@@ -11,7 +11,13 @@ import SwiftUI
 struct app926App: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            NavigationView{
+                LoaderUIView()
+                    .onTapGesture {
+                        // Закрываем клавиатуру при нажатии
+                        UIApplication.shared.endEditing()
+                    }
+            }
         }
     }
 }
