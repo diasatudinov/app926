@@ -53,7 +53,7 @@ struct LoaderUIView: View {
             if true {
                 ReOnboardingUIView()
             } else {
-                Text("US")
+                UsOnboardingUIView()
             }
 //            if isWithinTwoDays() {
 //                ReOnboardingUIView()
