@@ -12,6 +12,7 @@ struct HomeUIView: View {
     
     @State var editOrder = false
     @State var editErnings = false
+    @State var newDessert = false
     
     @State private var earningText = "0"
     var body: some View {
@@ -165,9 +166,13 @@ struct HomeUIView: View {
                             .font(.system(size: 22, weight: .bold))
                             .foregroundColor(.white)
                         Spacer()
-                        Image(systemName: "plus")
-                            .font(.system(size: 20, weight: .regular))
-                            .foregroundColor(.mainRed)
+                        Button {
+                            newDessert = true
+                        } label: {
+                            Image(systemName: "plus")
+                                .font(.system(size: 20, weight: .regular))
+                                .foregroundColor(.mainRed)
+                        }
                     }.padding(.vertical, 15)
                     
                     ScrollView(.horizontal, showsIndicators: false) {
@@ -314,9 +319,22 @@ struct HomeUIView: View {
                 }
             }
             
+            if newDessert {
+                ZStack {
+                    Rectangle().opacity(0.6).ignoresSafeArea()
+                        .onTapGesture {
+                            newDessert = false
+                        }
+                    
+                    NewDessert(createDesertShow: $newDessert, viewModel: viewModel)
+                    
+                }
+            }
+            
             if editErnings {
-                Color.black.opacity(0.4) // Background overlay
-                    .edgesIgnoringSafeArea(.all)
+                Rectangle()
+                    .foregroundColor(.black.opacity(0.4))
+                    .ignoresSafeArea()
                     .onTapGesture {
                         editErnings = false
                     }
@@ -525,7 +543,7 @@ struct EditOrder: View {
             
             
         
-        }//.ignoresSafeArea(edges: .bottom)
+        }
         
         .onAppear {
             // Подписываемся на уведомления о клавиатуре

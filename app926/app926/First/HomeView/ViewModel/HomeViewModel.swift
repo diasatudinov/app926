@@ -16,6 +16,8 @@ class HomeViewModel: ObservableObject {
     }
     @Published var progress = 0.0
     
+    @Published var deserts: [Dessert] = []
+    
     func progressCount() {
         var progress = 0.0
         progress = Double(order.fulfilled)/Double(order.total)
@@ -36,4 +38,7 @@ class HomeViewModel: ObservableObject {
         order.earnings = newEarning
     }
     
+    func createNewDessert(_ dessert: Dessert) {
+        deserts.append(dessert)
+    }
 }
