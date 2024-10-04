@@ -125,7 +125,7 @@ struct NewDessert: View {
                             Spacer()
                         }
                         TextField("", text: $grade)
-                            .keyboardType(.numberPad)
+                            .keyboardType(.decimalPad)
                             .foregroundColor(.white)
                             .padding(14)
                             .overlay(
