@@ -6,3 +6,11 @@
 //
 
 import Foundation
+
+
+struct Order: Codable {
+    
+    var fulfilled: Int
+    var total: Int
+    var earnings: Double
+}
