@@ -13,7 +13,9 @@ struct HomeUIView: View {
     @State var editOrder = false
     @State var editErnings = false
     @State var newDessert = false
+    @State var editDessert = false
     
+    @State var selectedDessert: Dessert? = nil
     @State private var earningText = "0"
     var body: some View {
         ZStack {
@@ -177,9 +179,12 @@ struct HomeUIView: View {
                     
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack {
-                            HomeCell(dessert: Dessert(name: "Lambeth-style cake", grade: 4.9, notes: "Cake with cherry and coconut filling and chocolate sponge cake"))
-                                
-                            HomeCell(dessert: Dessert(name: "Lambeth-style cake", grade: 4.9, notes: "Cake with cherry and coconut filling and chocolate sponge cake"))
+                            ForEach(viewModel.deserts, id: \.self) { dessert in
+                                HomeCell(dessert: dessert, onEdit: {
+                                    selectedDessert = dessert
+                                    editDessert = true
+                                })
+                            }
                         }
                     }
                     
@@ -328,6 +333,12 @@ struct HomeUIView: View {
                     
                     NewDessert(createDesertShow: $newDessert, viewModel: viewModel)
                     
+                }
+            }
+            
+            if editDessert {
+                if let dessert = selectedDessert {
+                    EditDessert(createDesertShow: $editDessert, viewModel: viewModel, dessert: dessert)
                 }
             }
             
