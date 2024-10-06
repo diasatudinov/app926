@@ -10,6 +10,7 @@ import SwiftUI
 struct HomeCell: View {
     @State var dessert: Dessert
     
+    let onEdit: () -> Void
     var body: some View {
         ZStack {
             Rectangle()
@@ -23,7 +24,7 @@ struct HomeCell: View {
                         Image(uiImage: image)
                             .resizable()
                             .scaledToFill()
-                            .frame(height: 170)
+                            .frame(width: 294 * 0.8 - 16, height: 170)
                             .cornerRadius(14)
                             .allowsHitTesting(false)
                     } else {
@@ -37,7 +38,7 @@ struct HomeCell: View {
                         HStack {
                             Spacer()
                             Button {
-                                
+                                onEdit()
                             } label: {
                                 
                                 ZStack {
@@ -81,5 +82,5 @@ struct HomeCell: View {
 }
 
 #Preview {
-    HomeCell(dessert: Dessert(name: "Lambeth-style cake", grade: 4.9, notes: "Cake with cherry and coconut filling and chocolate sponge cake"))
+    HomeCell(dessert: Dessert(name: "Lambeth-style cake", grade: 4.9, notes: "Cake with cherry and coconut filling and chocolate sponge cake"), onEdit: {})
 }

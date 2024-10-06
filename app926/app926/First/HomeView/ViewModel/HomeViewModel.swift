@@ -5,7 +5,7 @@
 //  Created by Dias Atudinov on 04.10.2024.
 //
 
-import Foundation
+import SwiftUI
 
 class HomeViewModel: ObservableObject {
     
@@ -40,5 +40,14 @@ class HomeViewModel: ObservableObject {
     
     func createNewDessert(_ dessert: Dessert) {
         deserts.append(dessert)
+    }
+    
+    func editDessert(_ dessert: Dessert, newName: String, newImage: UIImage?, newGrade: Double, newNote: String) {
+        if let index = deserts.firstIndex(where: { $0.id == dessert.id }) {
+            deserts[index].name = newName
+            deserts[index].image = newImage
+            deserts[index].grade = newGrade
+            deserts[index].notes = newNote
+        }
     }
 }
