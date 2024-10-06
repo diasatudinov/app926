@@ -19,7 +19,6 @@ struct NewDessert: View {
     @State var notes = ""
     @State private var selectedImage: UIImage?
     
-    @State var datePickerShow = false
     @State private var isKeyboardVisible = false
     @State private var isShowingImagePicker = false
     var body: some View {
@@ -162,11 +161,6 @@ struct NewDessert: View {
                             }
                         
                     }.padding(.horizontal).padding(.top, 20)
-                        .onAppear {
-                            fulfill = "\(viewModel.order.fulfilled)"
-                            total = "\(viewModel.order.total)"
-                            
-                        }
                     
                     Spacer()
                     
@@ -237,5 +231,5 @@ struct NewDessert: View {
 }
 
 #Preview {
-    HomeUIView(viewModel: HomeViewModel())
+    HomeUIView(viewModel: HomeViewModel(), orderVM: OrdersViewModel())
 }

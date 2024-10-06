@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ReOnboardingUIView: View {
     @ObservedObject var homeVM: HomeViewModel = HomeViewModel()
-    
+    @ObservedObject var orderVM: OrdersViewModel = OrdersViewModel()
     @State private var pageNum: Int = 1
     @State private var showSheet = false
     @AppStorage("signedUP") var signedUP: Bool = false
@@ -140,7 +140,7 @@ struct ReOnboardingUIView: View {
             }
             
         } else {
-            HomeUIView(viewModel: homeVM)
+            HomeUIView(viewModel: homeVM, orderVM: orderVM)
         }
     }
 }

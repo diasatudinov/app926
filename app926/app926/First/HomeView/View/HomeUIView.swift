@@ -9,7 +9,7 @@ import SwiftUI
 
 struct HomeUIView: View {
     @ObservedObject var viewModel: HomeViewModel
-    
+    @ObservedObject var orderVM: OrdersViewModel
     @State var editOrder = false
     @State var editErnings = false
     @State var newDessert = false
@@ -297,7 +297,7 @@ struct HomeUIView: View {
             VStack {
                 Spacer()
                 NavigationLink {
-                    
+                    OrdersUIView(viewModel: orderVM)
                 } label: {
                     ZStack {
                         Rectangle()
@@ -421,7 +421,7 @@ struct HomeUIView: View {
 }
 
 #Preview {
-    HomeUIView(viewModel: HomeViewModel())
+    HomeUIView(viewModel: HomeViewModel(), orderVM: OrdersViewModel())
 }
 
 
@@ -430,7 +430,7 @@ struct HomeUIView: View {
 struct EditOrder: View {
     @Binding var editOrderShow: Bool
     @ObservedObject var viewModel: HomeViewModel
-    @State var order: Order
+    @State var order: StatOrder
     
     @State var fulfill = ""
     @State var total = ""

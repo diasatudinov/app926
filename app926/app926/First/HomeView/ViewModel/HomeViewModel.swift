@@ -9,7 +9,7 @@ import SwiftUI
 
 class HomeViewModel: ObservableObject {
     
-    @Published var order: Order = Order(fulfilled: 0, total: 0, earnings: 0) {
+    @Published var order: StatOrder = StatOrder(fulfilled: 0, total: 0, earnings: 0) {
         didSet {
             progressCount()
         }
