@@ -136,7 +136,7 @@ struct HomeUIView: View {
                                     .font(.system(size: 20, weight: .semibold))
                                     .foregroundColor(.white)
                                 
-                                Text("$\(earningText)")
+                                Text("$\(String(format: "%.1f", viewModel.order.earnings))")
                                     .font(.system(size: 34, weight: .bold))
                                     .foregroundColor(.secondaryRed)
                                     .padding(.bottom, 10)

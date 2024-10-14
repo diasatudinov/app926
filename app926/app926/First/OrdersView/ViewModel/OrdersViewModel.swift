@@ -9,8 +9,48 @@ import SwiftUI
 
 class OrdersViewModel: ObservableObject {
     
-    @Published var orders: [Order] = []
+    @Published var orders: [Order] = [] {
+        didSet {
+            saveOrders()
+        }
+    }
     
+    private let ordersFileName = "orders.json"
+    
+    init() {
+        loadOrders()
+    }
+    
+    private func getDocumentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        return paths[0]
+    }
+    
+    private func ordersFilePath() -> URL {
+        return getDocumentsDirectory().appendingPathComponent(ordersFileName)
+    }
+    
+    private func saveOrders() {
+        DispatchQueue.global().async {
+            let encoder = JSONEncoder()
+            do {
+                let data = try encoder.encode(self.orders)
+                try data.write(to: self.ordersFilePath())
+            } catch {
+                print("Failed to save players: \(error.localizedDescription)")
+            }
+        }
+    }
+    
+    private func loadOrders() {
+        let decoder = JSONDecoder()
+        do {
+            let data = try Data(contentsOf: ordersFilePath())
+            orders = try decoder.decode([Order].self, from: data)
+        } catch {
+            print("Failed to load players: \(error.localizedDescription)")
+        }
+    }
     
     func createNewOrder(_ order: Order) {
         orders.append(order)
