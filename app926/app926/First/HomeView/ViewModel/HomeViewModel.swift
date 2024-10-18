@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+import StoreKit
 class HomeViewModel: ObservableObject {
     
     @Published var order: StatOrder = StatOrder(fulfilled: 0, total: 0, earnings: 0) {
@@ -149,6 +149,27 @@ class HomeViewModel: ObservableObject {
             deserts[index].image = newImage
             deserts[index].grade = newGrade
             deserts[index].notes = newNote
+        }
+    }
+    
+    func shareApp() {
+        guard let url = URL(string: "https://itunes.apple.com/app/id6737123650") else { return }
+        let activityVC = UIActivityViewController(activityItems: [url], applicationActivities: nil)
+        
+        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+           let rootViewController = windowScene.windows.first?.rootViewController {
+            rootViewController.present(activityVC, animated: true, completion: nil)
+        }
+    }
+    
+    func rateApp() {
+        SKStoreReviewController.requestReview()
+    }
+    
+    func openUsagePolicy() {
+        guard let url = URL(string: "https://www.termsfeed.com/live/87ed83e8-52ea-4956-8908-52477a54018e") else { return }
+        if UIApplication.shared.canOpenURL(url) {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
     }
 }

@@ -198,7 +198,7 @@ struct HomeUIView: View {
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack {
                             Button {
-                                
+                                viewModel.openUsagePolicy()
                             } label: {
                                 ZStack {
                                     Rectangle()
@@ -228,7 +228,7 @@ struct HomeUIView: View {
                             }
                             
                             Button {
-                                
+                                viewModel.rateApp()
                             } label: {
                                 ZStack {
                                     Rectangle()
@@ -258,7 +258,7 @@ struct HomeUIView: View {
                             }
                             
                             Button {
-                                
+                                viewModel.shareApp()
                             } label: {
                                 ZStack {
                                     Rectangle()
