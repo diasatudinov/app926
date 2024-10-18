@@ -55,14 +55,6 @@ struct LoaderUIView: View {
             } else {
                 UsOnboardingUIView()
             }
-//            if isWithinTwoDays() {
-//                ReOnboardingUIView()
-//
-//            } else if getAccess() == false {
-//                UsOnboardingUIView()
-//            } else {
-//                ReOnboardingUIView()
-//            }
             
         }
     }

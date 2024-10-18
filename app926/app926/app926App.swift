@@ -14,7 +14,6 @@ struct app926App: App {
             NavigationView{
                 LoaderUIView()
                     .onTapGesture {
-                        // Закрываем клавиатуру при нажатии
                         UIApplication.shared.endEditing()
                     }
             }
